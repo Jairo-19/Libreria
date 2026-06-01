@@ -1,5 +1,5 @@
-<header class="flex items-center justify-between px-6 py-4 shadow-md static ">
-    
+<header class="flex items-center justify-between px-6 py-4 shadow-md z-50 relative">
+
     <div class="flex items-center gap-3">
         <a href="{{ url('/') }}">
             <img src="{{ asset('imagenes/logo.png') }}" alt="Logo de la librería" class="h-16">
@@ -7,7 +7,6 @@
             <h1 class="text-2xl font-bold">Verso & <span class="text-[#8D5717]">Prosa</span></h1>
         
     </div>
-
     <div class="flex items-center gap-8">
         <nav>
             <ul class="flex items-center gap-6 ">
