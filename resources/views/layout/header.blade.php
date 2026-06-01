@@ -1,6 +1,5 @@
 <header class="flex items-center justify-between px-6 py-4 shadow-md static ">
     
-    <!-- Logo -->
     <div class="flex items-center gap-3">
         <a href="{{ url('/') }}">
             <img src="{{ asset('imagenes/logo.png') }}" alt="Logo de la librería" class="h-16">
@@ -9,7 +8,6 @@
         
     </div>
 
-    <!-- Menú + Usuario -->
     <div class="flex items-center gap-8">
         <nav>
             <ul class="flex items-center gap-6 ">
