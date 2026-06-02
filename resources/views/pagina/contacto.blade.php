@@ -11,9 +11,6 @@
 
     <div class="mx-auto max-w-7xl">
         <div class="mx-auto max-w-3xl text-center">
-            <span class="inline-flex items-center rounded-full border border-[#8A501C]/20 bg-[#8A501C]/10 px-4 py-1 text-sm font-semibold text-[#8A501C]">
-                Experiencia pensada para ti
-            </span>
             <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900">
                 ¿Qué te <span class="text-[#8A501C]">ofrecemos?</span>
             </h1>
