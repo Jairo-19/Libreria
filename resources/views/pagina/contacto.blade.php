@@ -4,8 +4,36 @@
 
 @section('content')
     
-<!-- -->
+<!-- presentacion-->
 
+<section class="text-center py-12">
+    <h1 class="text-2xl font-extrabold">¿Qué te <span class="text-[#8A501C]">ofrecemos?</span></h1>    
+    <div class="flex">
+        <div class="border-2 border-[#8A501C] rounded-lg p-6 m-4 w-1/3">
+            <img src="{{ asset('imagenes/aventura.jpg') }}" alt="Imagen de aventura" class="w-full h-64 object-cover shadow-md mb-8">
+            <div>
+                <h1 class="text-xl font-semibold mb-2">Selección cuidada</h1>
+                <p>Encontrarás libros elegidos con atención para acompañarte en cada lectura.</p>
+            </div>
+        </div>
+
+        <div class="border-2 border-[#8A501C] rounded-lg p-6 m-4 w-1/3">
+            <img src="{{ asset('imagenes/comunidad.jpg') }}" alt="Imagen de comunidad" class="w-full h-64 object-cover shadow-md mb-8">
+            <div>
+                <h1 class="text-xl font-semibold mb-2">Atención cercana</h1>
+                <p>Te ayudamos a resolver dudas y a elegir la mejor opción según lo que buscas.</p>
+            </div>
+        </div>
+
+        <div class="border-2 border-[#8A501C] rounded-lg p-6 m-4 w-1/3">
+            <img src="{{ asset('imagenes/compra.jpg') }}" alt="Imagen de compra" class="w-full h-64 object-cover shadow-md mb-8">
+            <div>
+                <h1 class="text-xl font-semibold mb-2">Compra sencilla</h1>
+                <p>Disfruta de un proceso rápido, claro y pensado para que llegues a tu próximo libro sin complicaciones.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!--preguntas frecuentes -->
 <section>
