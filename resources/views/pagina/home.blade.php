@@ -10,7 +10,7 @@
         
         <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
             <div class="text-center">
-                <h1 class=" text-[#8D5717] text-3xl font-bold">
+                <h1 class=" text-[#8D5717] text-3xl font-extrabold">
                     Verso & Prosa
                 </h1>
                 <p class="text-lg">
