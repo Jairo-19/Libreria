@@ -12,9 +12,46 @@ Proyecto de práctica para aprender más sobre el consumo de APIs e implementar 
 
 ## ✨ Funcionalidades
 
+### 📖 Gestión de Libros y Categorías
 - **Panel de administración** con estadísticas y métricas del sistema
-- **CRUDs completos** para la gestión de libros, autores y categorías
-- **Buscador** de libros integrado en la plataforma
+- **CRUDs completos** para la gestión de libros
+- **Asociación de múltiples autores** por libro
+- **Clasificación por categorías**
+
+### 🔍 Búsqueda y Descubrimiento
+- **Buscador avanzado** de libros con filtrado por:
+  - 📕 Título del libro
+  - 🆔 ISBN
+  - 👤 Autor
+  - 📂 Categoría
+- **Autocompletado inteligente** para búsquedas rápidas
+- **Sugerencias en tiempo real** mientras escribes
+
+### 🛒 Carrito de Compra
+- **Agregar y eliminar libros** del carrito
+- **Modificar cantidades** de productos
+- **Cálculo automático** de totales y subtotales
+- **Persistencia de datos** en sesión
+
+### ❤️ Lista de Deseos
+- **Guardar libros favoritos** para consultar después
+- **Gestión completa** de deseos (añadir/eliminar)
+
+### 💳 Pasarela de Pagos
+- **Integración con PayPal** para pagos seguros
+- **Procesamiento de pedidos** de manera segura
+- **Confirmación de compra** inmediata
+
+### 📧 Automatización de Correos
+- **Notificaciones por email** de confirmación de compra
+- **Integración con n8n** para automatización de flujos
+- **Servicio de email** con MailTrap para testing
+- **Emails personalizados** según tipo de evento
+
+### 📚 Integración con Google Books API
+- **Alimentación automática** de la base de datos con títulos reales
+- **Obtención de metadatos** de libros (título, autor, ISBN, descripción)
+- **Datos precisos y actualizados** de títulos publicados
 
 ---
 
@@ -29,6 +66,9 @@ Proyecto de práctica para aprender más sobre el consumo de APIs e implementar 
 | **JavaScript** | Interactividad en el frontend |
 | **HTML** | Estructura de las vistas |
 | **n8n** | Automatización de flujos y workflows |
+| **Google Books API** | Fuente de datos de libros y metadatos |
+| **MailTrap** | Servicio de email para testing |
+| **PayPal API** | Procesamiento de pagos online |
 
 ---
 
