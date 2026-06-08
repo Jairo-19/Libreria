@@ -47,7 +47,7 @@
                         <span class="ml-2 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-{{ $libro->descuento }}%</span>
                         @endif
                     </div>
-                    <button class="bg-[#8D5717] hover:bg-[#7E3716] text-white px-3 py-1.5 rounded text-sm transition-colors">
+                    <button data-add-cart="{{ route('carrito.agregar', $libro) }}" class="bg-[#8D5717] hover:bg-[#7E3716] text-white px-3 py-1.5 rounded text-sm transition-colors">
                         <i class="bi bi-cart-plus"></i>
                     </button>
                 </div>

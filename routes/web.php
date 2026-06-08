@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\LibroController;
 use App\Models\Libro;
 use App\Services\OpenLibraryService;
 
@@ -12,13 +14,29 @@ use App\Services\OpenLibraryService;
 Route::get('/', App\Http\Controllers\HomeController::class)->name('home');
 
 //ruta para la pagina de libros (muestra catálogo desde BD)
-Route::get('/libros', function () {
-    $libros = Libro::all();
-    return view('pagina.libros', compact('libros'));
-})->name('libros');
+Route::get('/libros', [LibroController::class, 'index'])->name('libros');
 
 //ruta para la pagina de contacto
 Route::get('/contacto', function () {return view('pagina.contacto');})->name('contacto');
+
+//============RUTAS DE USUARIO============== ///
+Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito');
+Route::get('/carrito/resumen', [CarritoController::class, 'resumen'])->name('carrito.resumen');
+Route::post('/carrito/agregar/{libro}', [CarritoController::class, 'add'])->name('carrito.agregar');
+Route::post('/carrito/eliminar/{carrito}', [CarritoController::class, 'destroy'])->name('carrito.eliminar');
+Route::post('/carrito/cantidad/{carrito}/{action}', [CarritoController::class, 'updateQuantity'])->name('carrito.cantidad');
+
+Route::get('/lista-deseos', function () {
+    return view('pagina.lista-deseos');
+})->name('lista-deseos');
+
+Route::get('/perfil', function () {
+    return view('pagina.perfil');
+})->name('perfil');
+
+Route::get('/ajustes', function () {
+    return view('pagina.ajustes');
+})->name('ajustes');
 
 //============RUTAS DE LA API============== ///
 
