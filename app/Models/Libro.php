@@ -21,7 +21,8 @@ class Libro extends Model
         'precio',
         'stock',
         'activo',
-        'google_books_id',
+        'descuento',
+        'open_library_id',
         'isbn_13',
         'imagen',
         'editorial',
@@ -33,6 +34,7 @@ class Libro extends Model
     // Casting de tipos de datos
     protected $casts = [
         'precio' => 'decimal:2',
+        'descuento' => 'integer',
         'activo' => 'boolean',
     ];
 

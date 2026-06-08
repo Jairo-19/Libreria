@@ -48,7 +48,7 @@ Proyecto de práctica para aprender más sobre el consumo de APIs e implementar 
 - **Servicio de email** con MailTrap para testing
 - **Emails personalizados** según tipo de evento
 
-### 📚 Integración con Google Books API
+### 📚 Integración con Open Library API
 - **Alimentación automática** de la base de datos con títulos reales
 - **Obtención de metadatos** de libros (título, autor, ISBN, descripción)
 - **Datos precisos y actualizados** de títulos publicados
@@ -66,7 +66,7 @@ Proyecto de práctica para aprender más sobre el consumo de APIs e implementar 
 | **JavaScript** | Interactividad en el frontend |
 | **HTML** | Estructura de las vistas |
 | **n8n** | Automatización de flujos y workflows |
-| **Google Books API** | Fuente de datos de libros y metadatos |
+| **Open Library API** | Fuente de datos de libros y metadatos |
 | **MailTrap** | Servicio de email para testing |
 | **PayPal API** | Procesamiento de pagos online |
 

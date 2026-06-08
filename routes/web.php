@@ -1,17 +1,28 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\LibroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
+use App\Models\Libro;
 
 
 //============RUTAS DE LA PAGINA PRINCIPAL============== ///
 // Ruta para la página de inicio
 Route::get('/', function () {return view('pagina.home');})->name('home');
 
-//ruta para la pagina de libros
-Route::get('/libros', function () {return view('pagina.libros');})->name('libros');
+//ruta para la pagina de libros (muestra catálogo desde BD)
+Route::get('/libros', function () {
+    $libros = Libro::all();
+    return view('pagina.libros', compact('libros'));
+})->name('libros');
+
+//ruta para importar libros desde Open Library via Postman
+Route::get('/importar/{query?}', function (string $query = 'fiction') {
+    Artisan::call("libros:importar", ['query' => $query]);
+    return response()->json(['message' => nl2br(Artisan::output())]);
+});
 
 //ruta para la pagina de contacto
 Route::get('/contacto', function () {return view('pagina.contacto');})->name('contacto');

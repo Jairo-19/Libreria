@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'openlibrary' => [
+        'base_url' => env('OPEN_LIBRARY_BASE_URL', 'https://openlibrary.org'),
+    ],
+
 ];

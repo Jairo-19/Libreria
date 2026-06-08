@@ -13,11 +13,12 @@ return new class extends Migration
             $table->string('titulo', 255);
             $table->text('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
+            $table->integer('descuento')->default(0)->nullable()->unsigned();
             $table->integer('stock')->default(0);
             $table->boolean('activo')->default(true);
 
-            // Campos Google Books API
-            $table->string('google_books_id', 20)->unique()->nullable();
+            // Campos Open Library API
+            $table->string('open_library_id', 50)->unique()->nullable();
             $table->string('isbn_13', 13)->unique()->nullable();
             $table->string('imagen', 500)->nullable();
             $table->string('editorial', 255)->nullable();
