@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('isbn_13', 13)->unique()->nullable();
             $table->string('imagen', 500)->nullable();
             $table->string('editorial', 255)->nullable();
-            $table->year('anio')->nullable();
+            $table->integer('anio')->nullable()->unsigned();
             $table->string('idioma', 10)->nullable();
             $table->integer('num_paginas')->nullable();
 

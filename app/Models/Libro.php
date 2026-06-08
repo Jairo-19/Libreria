@@ -35,6 +35,7 @@ class Libro extends Model
     protected $casts = [
         'precio' => 'decimal:2',
         'descuento' => 'integer',
+        'anio' => 'integer',
         'activo' => 'boolean',
     ];
 

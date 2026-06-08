@@ -18,9 +18,13 @@ Route::get('/libros', function () {
     return view('pagina.libros', compact('libros'));
 })->name('libros');
 
-//ruta para importar libros desde Open Library via Postman
-Route::get('/importar/{query?}', function (string $query = 'fiction') {
-    Artisan::call("libros:importar", ['query' => $query]);
+//ruta para importar libros aleatorios desde Open Library via Postman
+Route::get('/importar/{query?}', function (?string $query = null) {
+    if ($query) {
+        Artisan::call("libros:importar", ['query' => $query]);
+    } else {
+        Artisan::call("libros:importar");
+    }
     return response()->json(['message' => nl2br(Artisan::output())]);
 });
 

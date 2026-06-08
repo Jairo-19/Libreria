@@ -8,15 +8,20 @@ use App\Models\Libro;
 
 class ImportarLibros extends Command
 {
-    protected $signature = 'libros:importar {query=fiction}';
+    protected $signature = 'libros:importar {query?}';
     protected $description = 'Importa libros desde Open Library API';
 
     public function handle(OpenLibraryService $service): void
     {
         $query = $this->argument('query');
-        $this->info("Buscando: $query...");
 
-        $items = $service->buscarLibros($query, 40);
+        if ($query) {
+            $this->info("Buscando: $query...");
+            $items = $service->buscarLibros($query, 40);
+        } else {
+            $this->info("Importando libros aleatorios de diversos temas...");
+            $items = $service->librosAleatorios(40);
+        }
 
         if (empty($items)) {
             $this->error('No se encontraron resultados o falló la API.');
