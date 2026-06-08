@@ -34,6 +34,23 @@
                     <i class="bi bi-person-circle text-3xl cursor-pointer hover:text-[#8D5717] transition"></i>
                 </button>
                 <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-1 z-50">
+                    <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">
+                        <i class="bi bi-person-fill"></i>
+                        Mi perfil
+                    </a>
+                    <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">
+                        <i class="bi bi-heart"></i>
+                        Lista de deseos
+                    </a>
+                    <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">
+                        <i class="bi bi-cart"></i>
+                        Carrito
+                    </a>
+                    <a href="#" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">
+                        <i class="bi bi-gear"></i>
+                        Ajustes
+                    </a>
+                    <hr class="my-1 border-gray-200">
                     <a href="{{ route('logout') }}"
                        class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

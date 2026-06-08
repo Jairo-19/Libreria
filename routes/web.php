@@ -9,7 +9,7 @@ use App\Services\OpenLibraryService;
 
 //============RUTAS DE LA PAGINA PRINCIPAL============== ///
 // Ruta para la página de inicio
-Route::get('/', function () {return view('pagina.home');})->name('home');
+Route::get('/', App\Http\Controllers\HomeController::class)->name('home');
 
 //ruta para la pagina de libros (muestra catálogo desde BD)
 Route::get('/libros', function () {
