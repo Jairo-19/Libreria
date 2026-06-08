@@ -35,8 +35,9 @@
                 </button>
                 <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-1 z-50">
                     <a href="{{ route('logout') }}"
-                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                       class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="bi bi-box-arrow-left"></i>
                         Cerrar sesión
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
@@ -50,21 +51,6 @@
             @endauth
         </div>
 
-@auth
-<script>
-document.getElementById('userMenuBtn')?.addEventListener('click', function() {
-    const dropdown = document.getElementById('userDropdown');
-    dropdown.classList.toggle('hidden');
-});
-document.addEventListener('click', function(e) {
-    const btn = document.getElementById('userMenuBtn');
-    const dropdown = document.getElementById('userDropdown');
-    if (btn && dropdown && !btn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.add('hidden');
-    }
-});
-</script>
-@endauth
     </div>
 
 </header>

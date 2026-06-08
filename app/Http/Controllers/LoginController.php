@@ -18,6 +18,10 @@ class LoginController extends Controller
         $validatedData = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Introduce un correo electrónico válido.',
+            'password.required' => 'La contraseña es obligatoria.',
         ]);
 
         // Intentar autenticar al usuario
@@ -28,5 +32,13 @@ class LoginController extends Controller
 
         // Autenticación fallida, redirigir de vuelta al login con un mensaje de error
         return redirect()->back()->withErrors(['email' => 'Credenciales inválidas. Por favor, inténtalo de nuevo.']);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
     }
 }

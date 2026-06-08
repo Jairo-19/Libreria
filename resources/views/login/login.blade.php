@@ -22,6 +22,17 @@
                 <p class="text-gray-600 text-sm">Inicia sesión para continuar</p>
             </div>
 
+            @if ($errors->any())
+                <div id="errores" class="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg text-sm mb-4">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <script>setTimeout(() => { const e = document.getElementById('errores'); if (e) e.remove(); }, 3000);</script>
+            @endif
+
             <!-- Formulario -->
             <form action="{{ url('/login') }}" method="POST" class="space-y-5">
                 @csrf
@@ -30,7 +41,7 @@
                     <label for="email" class="block text-sm font-semibold text-gray-800 mb-2">Correo Electrónico</label>
                     <div class="flex items-center border border-gray-300 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-[#8D5717]">
                         <i class="bi bi-envelope text-gray-500 mr-3 text-base"></i>
-                        <input type="email" id="email" name="email" placeholder="tu@correo.com" required
+                        <input type="email" id="email" name="email" placeholder="pedro@gmail.com" value="{{ old('email') }}" required
                                class="w-full outline-none bg-transparent text-base">
                     </div>
                 </div>
@@ -40,9 +51,9 @@
                     <label for="password" class="block text-sm font-semibold text-gray-800 mb-2">Contraseña</label>
                     <div class="flex items-center border border-gray-300 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-[#8D5717]">
                         <i class="bi bi-lock text-gray-500 mr-3 text-base"></i>
-                        <input type="password" id="password" name="password" placeholder="••••••••" required
+                        <input type="password" id="login_password" name="password" placeholder="••••••••" required 
                                class="w-full outline-none bg-transparent text-base">
-                        <i class="bi bi-eye-slash text-gray-500 cursor-pointer ml-3 text-base"></i>
+                        <i class="bi bi-eye-slash text-gray-500 cursor-pointer ml-3 text-base" data-toggle-password data-target="login_password"></i>
                     </div>
                 </div>
 

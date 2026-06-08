@@ -76,6 +76,7 @@ Route::get('/importar/{query?}', function (?string $query = null) {
 //============RUTAS DE LOGIN Y REGISTRO==============
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 Route::post('/registro', [RegistroController::class, 'store'])->name('registro.store');
