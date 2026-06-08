@@ -38,14 +38,16 @@ class ImportarLibros extends Command
 
             $coverId = $doc['cover_i'] ?? null;
 
+            $descuentos = [0, 0, 0, 0, 5, 5, 10, 10, 15, 20, 25, 30];
+
             Libro::updateOrCreate(
                 ['open_library_id' => $openLibraryId],
                 [
                     'titulo' => $doc['title'] ?? 'Sin título',
                     'descripcion' => null,
-                    'precio' => 0,
-                    'descuento' => 0,
-                    'stock' => 0,
+                    'precio' => mt_rand(599, 4999) / 100,
+                    'descuento' => $descuentos[array_rand($descuentos)],
+                    'stock' => mt_rand(5, 100),
                     'activo' => true,
                     'isbn_13' => $doc['isbn'][0] ?? null,
                     'imagen' => $coverId ? $service->obtenerPortada($coverId) : null,

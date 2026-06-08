@@ -28,9 +28,43 @@
             </ul>
         </nav>
 
-        <div>
-            <i class="bi bi-person-circle text-3xl cursor-pointer hover:text-[#8D5717] transition"></i>
+        <div class="relative">
+            @auth
+                <button id="userMenuBtn" class="focus:outline-none">
+                    <i class="bi bi-person-circle text-3xl cursor-pointer hover:text-[#8D5717] transition"></i>
+                </button>
+                <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-1 z-50">
+                    <a href="{{ route('logout') }}"
+                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Cerrar sesión
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+                </div>
+            @else
+                <a href="{{ route('login') }}">
+                    <i class="bi bi-person-circle text-3xl cursor-pointer hover:text-[#8D5717] transition"></i>
+                </a>
+            @endauth
         </div>
+
+@auth
+<script>
+document.getElementById('userMenuBtn')?.addEventListener('click', function() {
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', function(e) {
+    const btn = document.getElementById('userMenuBtn');
+    const dropdown = document.getElementById('userDropdown');
+    if (btn && dropdown && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add('hidden');
+    }
+});
+</script>
+@endauth
     </div>
 
 </header>
