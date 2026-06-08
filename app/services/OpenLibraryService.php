@@ -10,7 +10,7 @@ class OpenLibraryService
 
     public function buscarLibros(string $query, int $limit = 40): array
     {
-        $response = Http::get("{$this->baseUrl}/search.json", [
+        $response = Http::timeout(10)->get("{$this->baseUrl}/search.json", [
             'q' => $query,
             'limit' => $limit,
         ]);
@@ -24,15 +24,10 @@ class OpenLibraryService
 
     public function librosAleatorios(int $total = 40): array
     {
-        $temas = [
-            'adventure', 'history', 'science', 'romance', 'mystery',
-            'fantasy', 'philosophy', 'art', 'music', 'nature',
-            'fiction', 'biography', 'poetry', 'technology', 'travel',
-            'sport', 'cooking', 'business', 'education', 'health',
-        ];
+        $temas = ['adventure', 'history', 'science', 'romance', 'mystery', 'fantasy', 'fiction', 'biography'];
 
         $libros = [];
-        $porTema = max(1, intdiv($total, count($temas)));
+        $porTema = (int)ceil($total / count($temas));
 
         foreach ($temas as $tema) {
             $items = $this->buscarLibros($tema, $porTema);
@@ -47,7 +42,7 @@ class OpenLibraryService
             }
         }
 
-        return array_values($libros);
+        return array_slice(array_values($libros), 0, $total);
     }
 
     public function obtenerPortada(int $coverId, string $size = 'L'): ?string

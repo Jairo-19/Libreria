@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\LibroController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 use App\Models\Libro;
+use App\Services\OpenLibraryService;
 
 
 //============RUTAS DE LA PAGINA PRINCIPAL============== ///
@@ -18,18 +17,59 @@ Route::get('/libros', function () {
     return view('pagina.libros', compact('libros'));
 })->name('libros');
 
-//ruta para importar libros aleatorios desde Open Library via Postman
-Route::get('/importar/{query?}', function (?string $query = null) {
-    if ($query) {
-        Artisan::call("libros:importar", ['query' => $query]);
-    } else {
-        Artisan::call("libros:importar");
-    }
-    return response()->json(['message' => nl2br(Artisan::output())]);
-});
-
 //ruta para la pagina de contacto
 Route::get('/contacto', function () {return view('pagina.contacto');})->name('contacto');
+
+//============RUTAS DE LA API============== ///
+
+//ruta para importar libros desde Open Library via Postman
+Route::get('/importar/{query?}', function (?string $query = null) {
+    try {
+        $service = app(OpenLibraryService::class);
+        $items = $query ? $service->buscarLibros($query, 40) : $service->librosAleatorios(40);
+
+        if (empty($items)) {
+            return response()->json(['success' => false, 'error' => 'No se encontraron resultados'], 404);
+        }
+
+        $insertados = 0;
+        foreach ($items as $doc) {
+            $openLibraryId = $doc['key'] ?? null;
+            if (!$openLibraryId) continue;
+
+            $coverId = $doc['cover_i'] ?? null;
+
+            Libro::updateOrCreate(
+                ['open_library_id' => $openLibraryId],
+                [
+                    'titulo' => $doc['title'] ?? 'Sin título',
+                    'descripcion' => null,
+                    'precio' => 0,
+                    'descuento' => 0,
+                    'stock' => 0,
+                    'activo' => true,
+                    'isbn_13' => $doc['isbn'][0] ?? null,
+                    'imagen' => $coverId ? $service->obtenerPortada($coverId) : null,
+                    'editorial' => $doc['publisher'][0] ?? null,
+                    'anio' => $doc['first_publish_year'] ?? null,
+                    'idioma' => $doc['language'][0] ?? null,
+                    'num_paginas' => $doc['number_of_pages_median'] ?? null,
+                ]
+            );
+            $insertados++;
+        }
+
+        return response()->json([
+            'success' => true,
+            'importados' => $insertados,
+            'total_bd' => Libro::count(),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+    }
+});
+
+
 
 //============RUTAS DE LOGIN Y REGISTRO==============
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -46,5 +86,3 @@ Route::post('/registro', [RegistroController::class, 'store'])->name('registro.s
 
 
 
-
-//============RUTAS DE LA API============== //

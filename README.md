@@ -53,6 +53,26 @@ Proyecto de práctica para aprender más sobre el consumo de APIs e implementar 
 - **Obtención de metadatos** de libros (título, autor, ISBN, descripción)
 - **Datos precisos y actualizados** de títulos publicados
 
+#### Endpoints disponibles
+
+| Método | Ruta | Descripción | Ejemplo |
+|--------|------|-------------|---------|
+| `GET` | `/importar` | Importa 40 libros aleatorios de diversos temas | `GET /importar` |
+| `GET` | `/importar/{query}` | Busca e importa libros por palabra clave | `GET /importar/harry+potter` |
+| Artisan | `php artisan libros:importar` | Importa libros aleatorios desde consola | `php artisan libros:importar` |
+| Artisan | `php artisan libros:importar {query}` | Busca libros desde consola | `php artisan libros:importar "mystery"` |
+
+#### Ejemplos de búsqueda
+
+```
+GET /importar/ciencia+ficcion
+GET /importar/isabel+allende
+GET /importar/python+programming
+GET /importar/filosofia
+```
+
+> Open Library API es pública y no requiere API key.
+
 ---
 
 ## 🛠️ Tecnologías utilizadas
@@ -106,4 +126,8 @@ php artisan serve
 
 # Compilar assets en modo watch
 npm run dev
+
+# Importar libros desde Open Library (consola)
+php artisan libros:importar                 # 40 aleatorios
+php artisan libros:importar "harry potter"  # por búsqueda
 ```
