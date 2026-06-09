@@ -24,7 +24,7 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse ($libros as $libro)
-        <div class="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
+        <a href="{{ route('producto.show', $libro) }}" class="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
             <button data-wishlist-btn class="absolute top-2 right-2 bg-white/70 text-gray-500 rounded-full p-1.5 transition z-10">
                 <i class="bi bi-heart"></i>
             </button>
@@ -52,7 +52,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </a>
         @empty
         <div class="col-span-full text-center py-20 p-4 rounded-lg">
             <i class="bi bi-book block mb-4 text-8xl text-[#8D5717]"></i>

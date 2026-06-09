@@ -16,6 +16,9 @@ Route::get('/', App\Http\Controllers\HomeController::class)->name('home');
 //ruta para la pagina de libros (muestra catálogo desde BD)
 Route::get('/libros', [LibroController::class, 'index'])->name('libros');
 
+//ruta para la pagina de detalle del libro
+Route::get('/producto/{libro}', [LibroController::class, 'show'])->name('producto.show');
+
 //ruta para la pagina de contacto
 Route::get('/contacto', function () {return view('pagina.contacto');})->name('contacto');
 

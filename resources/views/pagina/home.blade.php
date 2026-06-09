@@ -29,8 +29,8 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @forelse ($ofertas as $libro)
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
-                <button data-wishlist-btn class="absolute top-2 right-2 bg-white/70 text-gray-500 rounded-full p-1.5 transition z-10">
+            <a href="{{ route('producto.show', $libro) }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative group">
+                <button data-wishlist-btn class="absolute top-2 right-2 bg-white/70 text-gray-500 rounded-full p-1.5 transition z-10 hover:bg-white hover:text-red-500">
                     <i class="bi bi-heart"></i>
                 </button>
                 @if ($libro->imagen)
@@ -52,12 +52,12 @@
                             <span class="ml-2 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-{{ $libro->descuento }}%</span>
                             @endif
                         </div>
-                        <button data-add-cart="{{ route('carrito.agregar', $libro) }}" class="bg-[#8D5717] hover:bg-[#7E3716] text-white px-3 py-1.5 rounded text-sm transition-colors">
+                        <button type="button" data-add-cart="{{ route('carrito.agregar', $libro) }}" class="bg-[#8D5717] hover:bg-[#7E3716] text-white px-3 py-1.5 rounded text-sm transition-colors" @click.stop>
                             <i class="bi bi-cart-plus"></i>
                         </button>
                     </div>
                 </div>
-            </div>
+            </a>
             @empty
             <div class="col-span-full text-center py-20 text-gray-500">
                 <p class="text-xl">No hay ofertas disponibles aún.</p>
