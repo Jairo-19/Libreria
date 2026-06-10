@@ -30,4 +30,13 @@ class AdminController extends Controller
 
         return view('admin.admin', compact('pedidosMes', 'ingresosMes', 'totalLibrosImportados'));
     }
+
+    public function usuarios()
+    {
+        if (!Auth::check() || Auth::user()->rol !== 'ADMIN') {
+            return redirect()->route('home');
+        }
+
+        return view('admin.usuarios');
+    }
 }

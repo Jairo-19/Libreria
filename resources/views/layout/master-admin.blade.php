@@ -28,10 +28,9 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <span class="text-sm text-gray-300">Hola, {{ Auth::user()->nombre }}</span>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="bg-white text-gray-800 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-600 transition">
                         Cerrar sesión
                     </button>
                 </form>
@@ -45,15 +44,13 @@
                 <a href="{{ route('admin.panel') }}" class="px-4 py-3 rounded-lg {{ request()->routeIs('admin.panel') ? 'bg-[#8D5717] text-white' : 'text-gray-700 hover:bg-gray-100' }} transition">
                     Panel principal
                 </a>
-                <a href="{{ route('home') }}" class="px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition">
-                    Ir al sitio
+                <a href="{{ route('usuarios') }}" class="px-4 py-3 rounded-lg {{ request()->routeIs('usuarios') ? 'bg-[#8D5717] text-white' : 'text-gray-700 hover:bg-gray-100' }} transition">
+                    Gestion de usuarios
                 </a>
-                <a href="{{ route('libros') }}" class="px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition">
-                    Libros
+                <a href="{{ route('libros') }}" class="px-4 py-3 rounded-lg {{ request()->routeIs('libros') ? 'bg-[#8D5717] text-white' : 'text-gray-700 hover:bg-gray-100' }} transition">
+                    gestion de libros
                 </a>
-                <a href="{{ route('perfil') }}" class="px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 transition">
-                    Perfil
-                </a>
+                
             </aside>
 
             <main class="flex-1 p-6 md:p-8 overflow-y-auto">

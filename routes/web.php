@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\LibroController;
@@ -38,8 +39,6 @@ Route::post('/lista-deseos/eliminar/{libro}', [App\Http\Controllers\ListaDeseosC
 Route::get('/perfil', function () {
     return view('pagina.perfil');
 })->name('perfil');
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.panel');
 
 //============RUTAS DE LA API============== ///
 
@@ -103,7 +102,8 @@ Route::get('/registro', [RegistroController::class, 'index'])->name('registro');
 Route::post('/registro', [RegistroController::class, 'store'])->name('registro.store');
 
 //============RUTAS DE ADMINISTRACION============== //
-
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.panel');
+Route::get('/admin/usuarios', [UsuarioController::class, 'index'])->name('usuarios');
 
 
 
