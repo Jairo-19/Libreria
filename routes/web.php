@@ -29,17 +29,13 @@ Route::post('/carrito/agregar/{libro}', [CarritoController::class, 'add'])->name
 Route::post('/carrito/eliminar/{carrito}', [CarritoController::class, 'destroy'])->name('carrito.eliminar');
 Route::post('/carrito/cantidad/{carrito}/{action}', [CarritoController::class, 'updateQuantity'])->name('carrito.cantidad');
 
-Route::get('/lista-deseos', function () {
-    return view('pagina.lista-deseos');
-})->name('lista-deseos');
+Route::get('/lista-deseos', [App\Http\Controllers\ListaDeseosController::class, 'index'])->name('lista-deseos');
+Route::post('/lista-deseos/agregar/{libro}', [App\Http\Controllers\ListaDeseosController::class, 'add'])->name('lista-deseos.agregar');
+Route::post('/lista-deseos/eliminar/{libro}', [App\Http\Controllers\ListaDeseosController::class, 'destroy'])->name('lista-deseos.eliminar');
 
 Route::get('/perfil', function () {
     return view('pagina.perfil');
 })->name('perfil');
-
-Route::get('/ajustes', function () {
-    return view('pagina.ajustes');
-})->name('ajustes');
 
 //============RUTAS DE LA API============== ///
 

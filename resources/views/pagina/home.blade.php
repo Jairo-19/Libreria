@@ -30,8 +30,8 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @forelse ($ofertas as $libro)
             <a href="{{ route('producto.show', $libro) }}" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative group">
-                <button data-wishlist-btn class="absolute top-2 right-2 bg-white/70 text-gray-500 rounded-full p-1.5 transition z-10 hover:bg-white hover:text-red-500">
-                    <i class="bi bi-heart"></i>
+                <button data-wishlist-btn data-libro-id="{{ $libro->id }}" class="absolute top-2 right-2 bg-white/70 text-gray-500 rounded-full p-1.5 transition z-10 hover:bg-white hover:text-red-500">
+                    <i class="bi {{ in_array($libro->id, $favoritosIds ?? []) ? 'bi-heart-fill text-red-500' : 'bi-heart' }}"></i>
                 </button>
                 @if ($libro->imagen)
                 <img src="{{ $libro->imagen }}" alt="{{ $libro->titulo }}" class="w-full h-64 object-cover" loading="lazy">

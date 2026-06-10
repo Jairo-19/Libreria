@@ -46,10 +46,6 @@
                         <i class="bi bi-cart"></i>
                         Carrito
                     </a>
-                    <a href="{{ url('/ajustes') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition">
-                        <i class="bi bi-gear"></i>
-                        Ajustes
-                    </a>
                     <hr class="my-1 border-gray-200">
                     <a href="{{ route('logout') }}"
                        class="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition"

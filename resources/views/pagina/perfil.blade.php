@@ -13,7 +13,7 @@
     <!-- Tarjeta de bienvenida -->
     <div class="mb-12 p-8 bg-[#8D5717] text-white rounded-lg shadow-lg">
         <div class="flex items-center gap-6">
-            <i class="bi bi-person-circle text-6xl flex-shrink-0"></i>
+            <i class="bi bi-person-circle text-6xl shrink-0"></i>
             <div>
                 <h2 class="text-2xl font-bold mb-2">¡Bienvenido, {{ auth()->user()->nombre }}!</h2>
                 <p class="text-sm opacity-90">Aquí puedes ver y gestionar tu información personal</p>
