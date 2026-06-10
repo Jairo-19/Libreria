@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegistroController extends Controller
 {
@@ -46,6 +47,9 @@ class RegistroController extends Controller
         $usuario->password = bcrypt($validatedData['password']);
         $usuario->telefono = $validatedData['telefono'];
         $usuario->save();
+
+        // Iniciar sesión automáticamente después del registro
+        Auth::login($usuario);
 
         // Redirigir al usuario al home con un mensaje de éxito
         return redirect()->route('home')->with('success', 'Registro exitoso. Bienvenido a Verso & Prosa.');

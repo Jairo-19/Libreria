@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CarritoCompra;
 use App\Models\Libro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
@@ -14,8 +15,8 @@ class CarritoController extends Controller
         $baseImponible = 0;
         $descuentoTotal = 0;
 
-        if (auth()->check()) {
-            $items = CarritoCompra::with('libro')->where('usuario_id', auth()->id())->get();
+        if (Auth::check()) {
+            $items = CarritoCompra::with('libro')->where('usuario_id', Auth::id())->get();
             foreach ($items as $item) {
                 $precio = $item->libro->precio;
                 $cant = $item->cantidad;
@@ -26,17 +27,17 @@ class CarritoController extends Controller
 
         return view('pagina.carrito', array_merge(
             compact('items'),
-            $this->calcularResumen(auth()->id())
+            $this->calcularResumen(Auth::id())
         ));
     }
 
     public function add(Libro $libro)
     {
-        if (!auth()->check()) {
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
 
-        $enCarrito = CarritoCompra::where('usuario_id', auth()->id())
+        $enCarrito = CarritoCompra::where('usuario_id', Auth::id())
             ->where('libro_id', $libro->id)->first();
 
         $cantidadActual = $enCarrito ? $enCarrito->cantidad : 0;
@@ -53,14 +54,14 @@ class CarritoController extends Controller
             $enCarrito->increment('cantidad');
         } else {
             CarritoCompra::create([
-                'usuario_id' => auth()->id(),
+                'usuario_id' => Auth::id(),
                 'libro_id' => $libro->id,
                 'cantidad' => 1,
             ]);
         }
 
         if (request()->wantsJson()) {
-            return response()->json($this->calcularResumen(auth()->id()));
+            return response()->json($this->calcularResumen(Auth::id()));
         }
 
         return redirect()->back()->with('success', 'Libro añadido al carrito');
@@ -68,12 +69,12 @@ class CarritoController extends Controller
 
     public function destroy(CarritoCompra $carrito)
     {
-        abort_unless($carrito->usuario_id === auth()->id(), 403);
+        abort_unless($carrito->usuario_id === Auth::id(), 403);
 
         $carrito->delete();
 
         if (request()->wantsJson()) {
-            return response()->json($this->calcularResumen(auth()->id()));
+            return response()->json($this->calcularResumen(Auth::id()));
         }
 
         return redirect()->route('carrito');
@@ -81,7 +82,7 @@ class CarritoController extends Controller
 
     public function updateQuantity(CarritoCompra $carrito, string $action)
     {
-        abort_unless($carrito->usuario_id === auth()->id(), 403);
+        abort_unless($carrito->usuario_id === Auth::id(), 403);
 
         if ($action === 'sumar' && $carrito->cantidad >= $carrito->libro->stock) {
             $error = "Unidades del libro '{$carrito->libro->titulo}' se han agotado";
@@ -98,7 +99,7 @@ class CarritoController extends Controller
         };
 
         if (request()->wantsJson()) {
-            return response()->json($this->calcularResumen(auth()->id()));
+            return response()->json($this->calcularResumen(Auth::id()));
         }
 
         return redirect()->route('carrito');
@@ -106,7 +107,7 @@ class CarritoController extends Controller
 
     public function resumen()
     {
-        return response()->json($this->calcularResumen(auth()->id()));
+        return response()->json($this->calcularResumen(Auth::id()));
     }
 
     private function calcularResumen(?int $usuarioId): array
