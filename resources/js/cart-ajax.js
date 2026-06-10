@@ -23,7 +23,10 @@ function actualizarResumen() {
 
 export function initCartAjax() {
     document.querySelectorAll('[data-add-cart]').forEach(btn => {
-        btn.addEventListener('click', function () {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
             const url = this.dataset.addCart;
             fetch(url, { method: 'POST', headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 'Accept': 'application/json' } })
                 .then(r => r.json().then(d => ({ status: r.status, body: d })))
@@ -50,7 +53,10 @@ export function initCartAjax() {
     });
 
     document.querySelectorAll('[data-cart-up]').forEach(btn => {
-        btn.addEventListener('click', function () {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
             const url = this.dataset.cartUp;
             fetch(url, { method: 'POST', headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 'Accept': 'application/json' } })
                 .then(r => r.json().then(d => ({ status: r.status, body: d })))
@@ -67,7 +73,10 @@ export function initCartAjax() {
     });
 
     document.querySelectorAll('[data-cart-down]').forEach(btn => {
-        btn.addEventListener('click', function () {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
             const url = this.dataset.cartDown;
             fetch(url, { method: 'POST', headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content, 'Accept': 'application/json' } })
                 .then(r => r.json())

@@ -90,8 +90,8 @@
                     <i class="bi bi-cart-plus"></i> Agregar al carrito
                 </button>
                 
-                <button class="inline-flex items-center gap-2 px-8 py-3 border-2 border-[#8D5717] text-[#8D5717] rounded-lg hover:bg-[#8D5717] hover:text-white font-semibold transition cursor-pointer">
-                    <i class="bi bi-heart"></i> Agregar a favoritos
+                <button data-wishlist-btn data-libro-id="{{ $libro->id }}" class="inline-flex items-center gap-2 px-8 py-3 border-2 border-[#8D5717] rounded-lg font-semibold transition cursor-pointer {{ in_array($libro->id, $favoritosIds ?? []) ? 'bg-[#8D5717] text-white' : 'text-[#8D5717] hover:bg-[#8D5717] hover:text-white' }}">
+                    <i class="bi {{ in_array($libro->id, $favoritosIds ?? []) ? 'bi-heart-fill' : 'bi-heart' }}"></i> Agregar a favoritos
                 </button>
             </div>
         </div>

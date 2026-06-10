@@ -12,40 +12,46 @@
     
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($libros as $libro)
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative group">
                     <button data-wishlist-btn data-libro-id="{{ $libro->id }}" data-wishlist-reload="true" class="absolute top-2 right-2 bg-white/90 text-red-500 rounded-full p-2 transition z-10 hover:bg-white hover:text-red-600">
                         <i class="bi bi-heart-fill"></i>
                     </button>
 
-                    @if ($libro->imagen)
-                        <img src="{{ $libro->imagen }}" alt="{{ $libro->titulo }}" class="w-full h-64 object-cover" loading="lazy">
-                    @else
-                        <div class="w-full h-64 bg-gray-100 flex items-center justify-center text-gray-300">
-                            <i class="bi bi-book" style="font-size: 6rem; line-height: 1;"></i>
-                        </div>
-                    @endif
-
-                    <div class="p-4 flex flex-col flex-1">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ $libro->titulo }}</h3>
-
-                        @if ($libro->editorial)
-                            <p class="text-sm text-gray-500 mb-4">{{ $libro->editorial }}</p>
+                    <a href="{{ route('producto.show', $libro) }}" class="block h-full text-left">
+                        @if ($libro->imagen)
+                            <img src="{{ $libro->imagen }}" alt="{{ $libro->titulo }}" class="w-full h-64 object-cover" loading="lazy">
+                        @else
+                            <div class="w-full h-64 bg-gray-100 flex items-center justify-center text-gray-300">
+                                <i class="bi bi-book" style="font-size: 6rem; line-height: 1;"></i>
+                            </div>
                         @endif
 
-                        <div class="mt-auto flex items-center justify-between">
-                            <div>
-                                <span class="text-xl font-bold text-[#8D5717]">${{ number_format($libro->precio, 2) }}</span>
+                        <div class="p-4 flex flex-col flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">{{ $libro->titulo }}</h3>
 
-                                @if ($libro->descuento > 0)
-                                    <span class="ml-2 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-{{ $libro->descuento }}%</span>
-                                @endif
+                            @if ($libro->editorial)
+                                <p class="text-sm text-gray-500 mb-4">{{ $libro->editorial }}</p>
+                            @endif
+
+                            @if ($libro->descripcion)
+                                <p class="text-sm text-gray-600 mb-4 line-clamp-3">{{ $libro->descripcion }}</p>
+                            @endif
+
+                            <div class="mt-auto flex items-center justify-between">
+                                <div>
+                                    <span class="text-xl font-bold text-[#8D5717]">${{ number_format($libro->precio, 2) }}</span>
+
+                                    @if ($libro->descuento > 0)
+                                        <span class="ml-2 text-xs bg-red-100 text-red-600 px-2 py-0.5 rounded-full">-{{ $libro->descuento }}%</span>
+                                    @endif
+                                </div>
+
+                                <button data-add-cart="{{ route('carrito.agregar', $libro) }}" class="bg-[#8D5717] hover:bg-[#7E3716] text-white px-3 py-1.5 rounded text-sm transition-colors">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
                             </div>
-
-                            <button data-add-cart="{{ route('carrito.agregar', $libro) }}" class="bg-[#8D5717] hover:bg-[#7E3716] text-white px-3 py-1.5 rounded text-sm transition-colors">
-                                <i class="bi bi-cart-plus"></i>
-                            </button>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @empty
                 <div class="col-span-full text-center py-12">

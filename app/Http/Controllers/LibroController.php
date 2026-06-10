@@ -21,6 +21,10 @@ class LibroController extends Controller
     public function show(Libro $libro)
     {
         $libro->load('autores', 'categorias');
-        return view('pagina.producto', compact('libro'));
+        $favoritosIds = Auth::check()
+            ? ListaDeseos::where('usuario_id', Auth::id())->pluck('libro_id')->all()
+            : [];
+
+        return view('pagina.producto', compact('libro', 'favoritosIds'));
     }
 }
