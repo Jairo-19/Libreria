@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\LibroController;
@@ -38,13 +39,7 @@ Route::get('/perfil', function () {
     return view('pagina.perfil');
 })->name('perfil');
 
-Route::get('/admin', function () {
-    if (!Auth::check() || Auth::user()->rol !== 'ADMIN') {
-        return redirect()->route('home');
-    }
-
-    return view('admin.admin');
-})->name('admin.panel');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.panel');
 
 //============RUTAS DE LA API============== ///
 
