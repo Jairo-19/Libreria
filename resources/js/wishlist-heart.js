@@ -25,6 +25,11 @@ export function initWishlistHearts() {
                     icon.classList.toggle('bi-heart');
                     icon.classList.toggle('bi-heart-fill');
                     this.classList.toggle('text-red-500');
+
+                    if (this.getAttribute('data-wishlist-reload') === 'true') {
+                        window.location.reload();
+                        return;
+                    }
                 }
             } catch (error) {
                 console.error('Error al actualizar lista de deseos:', error);

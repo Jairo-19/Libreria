@@ -12,7 +12,11 @@
     
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @forelse($libros as $libro)
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
+                    <button data-wishlist-btn data-libro-id="{{ $libro->id }}" data-wishlist-reload="true" class="absolute top-2 right-2 bg-white/90 text-red-500 rounded-full p-2 transition z-10 hover:bg-white hover:text-red-600">
+                        <i class="bi bi-heart-fill"></i>
+                    </button>
+
                     @if ($libro->imagen)
                         <img src="{{ $libro->imagen }}" alt="{{ $libro->titulo }}" class="w-full h-64 object-cover" loading="lazy">
                     @else
