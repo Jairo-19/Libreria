@@ -27,6 +27,11 @@ class LoginController extends Controller
         // Intentar autenticar al usuario
         if (Auth::attempt(['email' => $validatedData['email'], 'password' => $validatedData['password']], $request->boolean('remember'))) {
             $request->session()->regenerate();
+
+            if (Auth::user()->rol === 'ADMIN') {
+                return redirect()->route('admin.panel')->with('success', 'Inicio de sesión exitoso. Bienvenido al panel de administración.');
+            }
+
             return redirect()->route('home')->with('success', 'Inicio de sesión exitoso. Bienvenido a Verso & Prosa.');
         }
 

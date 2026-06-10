@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Finlandica+Headline:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap">
 
     <link rel="icon" href="{{ asset('imagenes/logo.png') }}">
-    <title>@yield('title', 'Mi Librería')</title>
+    <title>@yield('title')</title>
 </head>
 <body class="m-0 p-0 overflow-hidden">
 
