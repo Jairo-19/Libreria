@@ -17,14 +17,15 @@
         <div class="relative w-full md:w-1/2 lg:w-1/3">
             <i class="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
             <input
+                id="search-input"
                 type="text"
-                placeholder="Buscar..."
+                placeholder="Buscar por título"
                 class="w-full pl-10 pr-4 py-2 border rounded-full">
         </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         @forelse ($libros as $libro)
-        <a href="{{ route('producto.show', $libro) }}" class="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
+        <a href="{{ route('producto.show', $libro) }}" data-libro-card data-search-text="{{ strtolower($libro->titulo . ' ' . ($libro->editorial ?? '')) }}" class="rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col relative">
             <button data-wishlist-btn data-libro-id="{{ $libro->id }}" class="absolute top-2 right-2 bg-white/70 text-gray-500 rounded-full p-1.5 transition z-10">
                 <i class="bi {{ in_array($libro->id, $favoritosIds ?? []) ? 'bi-heart-fill text-red-500' : 'bi-heart' }}"></i>
             </button>
@@ -59,6 +60,11 @@
             <p class="text-xl  text-gray-500">No hay libros en el catálogo aún.</p>
         </div>
         @endforelse
+    </div>
+
+    <div id="search-empty-state" class="hidden col-span-full text-center py-20 p-4 rounded-lg">
+        <i class="bi bi-search block mb-4 text-8xl text-[#8D5717]"></i>
+        <p class="text-xl text-gray-500">No se encontraron libros con ese criterio.</p>
     </div>
 </section>
 
